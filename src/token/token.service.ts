@@ -38,16 +38,12 @@ export class TokenService {
     return { deleted: true };
   }
 
-  /**
-   * Validate existence, active flag and reqLeft > 0. If valid, decrement reqLeft and save.
-   */
   async validateAndConsume(apiToken: string): Promise<boolean> {
     const token = await this.tokenRepository.findOne({ where: { token: apiToken } });
     if (!token) return false;
     if (!token.active) return false;
     if (typeof token.reqLeft === 'number' && token.reqLeft <= 0) return false;
 
-    // decrement reqLeft if it's a number
     if (typeof token.reqLeft === 'number') {
       token.reqLeft = token.reqLeft - 1;
     }
