@@ -18,7 +18,7 @@ export class Location {
 
         // Ownership
         @OneToOne(() => Character, (character) => character.ownership)
-        owner: Character;
+        owner?: Character | null;
 
         // Favorites 
         @ManyToMany(() => Character, (character) => character.favPlaces)

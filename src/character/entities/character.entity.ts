@@ -19,7 +19,7 @@ export class Character {
     // Ownership
     @OneToOne(() => Location, (location) => location.owner)
     @JoinColumn()
-    ownership: Location;
+    ownership?: Location | null;
 
     // Favorites
     @ManyToMany(() => Location, (location) => location.favCharacters)

@@ -14,6 +14,16 @@ export class CharacterController {
     return this.characterService.create(createCharacterDto);
   }
 
+  @Patch(':id/favorites/:locationId')
+  addFavorite(@Param('id') id: string, @Param('locationId') locationId: string) {
+    return this.characterService.addFavorite(+id, +locationId);
+  }
+
+  @Get(':id/taxes')
+  getTaxes(@Param('id') id: string) {
+    return this.characterService.calculateTaxes(+id);
+  }
+
   @Get()
   findAll() {
     return this.characterService.findAll();
